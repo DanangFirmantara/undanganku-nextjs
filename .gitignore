@@ -85,9 +85,15 @@ bin/
 .turbo/
 
 # ==========================================
-# CLAUDE
+# CLAUDE / AI AGENT (local only)
 # ==========================================
 CLAUDE.md
+AGENTS.md
 .claude/
 backend/lessons/
 frontend/lessons/
+
+# ==========================================
+# DOCS (local only)
+# ==========================================
+docs/
