@@ -3,45 +3,44 @@
 import { useState } from "react"
 import Link from "next/link"
 
-export function LandingNavbar() {
-  const [mobileOpen, setMobileOpen] = useState(false)
+function scrollToSection(id: string, close?: () => void) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+  close?.()
+}
 
-  const handleScrollTo = (id: string) => {
-    setMobileOpen(false)
-    const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: "smooth" })
-  }
+export function LandingNavbar() {
+  const [open, setOpen] = useState(false)
 
   return (
     <nav className="navbar">
-      <Link href="/" className="navbar-logo">
-        Undangan<span>Ku</span>
-      </Link>
-
-      <ul className="navbar-links">
-        <li><button onClick={() => handleScrollTo("demo")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-dark)", fontWeight: 500, fontSize: "0.9rem" }}>TEMPLATE</button></li>
-        <li><button onClick={() => handleScrollTo("features")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-dark)", fontWeight: 500, fontSize: "0.9rem" }}>FITUR</button></li>
-        <li><button onClick={() => handleScrollTo("pricing")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-dark)", fontWeight: 500, fontSize: "0.9rem" }}>HARGA</button></li>
-        <li><button onClick={() => handleScrollTo("testimonial")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-dark)", fontWeight: 500, fontSize: "0.9rem" }}>TESTIMONI</button></li>
-      </ul>
-
-      <div className="navbar-actions">
-        <Link href="/login" className="btn-outline-wine">Masuk</Link>
-        <Link href="/login" className="btn-wine">Buat Undangan</Link>
+      <div className="navbar-container">
+        <a className="navbar-brand" onClick={() => scrollToSection("hero")} style={{ cursor: "pointer" }}>
+          UndanganKu
+        </a>
+        <ul className="navbar-links">
+          <li><a onClick={() => scrollToSection("demo")} style={{ cursor: "pointer" }}>TEMPLATE</a></li>
+          <li><a onClick={() => scrollToSection("features")} style={{ cursor: "pointer" }}>FITUR</a></li>
+          <li><a onClick={() => scrollToSection("pricing")} style={{ cursor: "pointer" }}>HARGA</a></li>
+          <li><a onClick={() => scrollToSection("testimonial")} style={{ cursor: "pointer" }}>TESTIMONI</a></li>
+        </ul>
+        <div className="navbar-actions">
+          <Link href="/login" className="btn-outline-sm">Masuk</Link>
+          <Link href="/login" className="btn-primary-sm">Buat Undangan</Link>
+        </div>
+        <button className="hamburger" onClick={() => setOpen(v => !v)} aria-label="Menu">
+          <i className={`fa-solid ${open ? "fa-xmark" : "fa-bars"}`}></i>
+        </button>
       </div>
-
-      <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-        {mobileOpen ? "✕" : "☰"}
-      </button>
-
-      {mobileOpen && (
-        <div className="navbar-mobile-panel">
-          <button onClick={() => handleScrollTo("demo")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-dark)", fontWeight: 500, fontSize: "0.9rem", textAlign: "left" }}>TEMPLATE</button>
-          <button onClick={() => handleScrollTo("features")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-dark)", fontWeight: 500, fontSize: "0.9rem", textAlign: "left" }}>FITUR</button>
-          <button onClick={() => handleScrollTo("pricing")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-dark)", fontWeight: 500, fontSize: "0.9rem", textAlign: "left" }}>HARGA</button>
-          <button onClick={() => handleScrollTo("testimonial")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-dark)", fontWeight: 500, fontSize: "0.9rem", textAlign: "left" }}>TESTIMONI</button>
-          <Link href="/login" className="btn-outline-wine" style={{ width: "fit-content" }}>Masuk</Link>
-          <Link href="/login" className="btn-wine" style={{ width: "fit-content" }}>Buat Undangan</Link>
+      {open && (
+        <div className="mobile-menu">
+          <a onClick={() => { scrollToSection("demo"); setOpen(false) }} style={{ cursor: "pointer" }}>TEMPLATE</a>
+          <a onClick={() => { scrollToSection("features"); setOpen(false) }} style={{ cursor: "pointer" }}>FITUR</a>
+          <a onClick={() => { scrollToSection("pricing"); setOpen(false) }} style={{ cursor: "pointer" }}>HARGA</a>
+          <a onClick={() => { scrollToSection("testimonial"); setOpen(false) }} style={{ cursor: "pointer" }}>TESTIMONI</a>
+          <div className="mobile-menu-actions">
+            <Link href="/login" className="btn-outline-sm" onClick={() => setOpen(false)}>Masuk</Link>
+            <Link href="/login" className="btn-primary-sm" onClick={() => setOpen(false)}>Buat Undangan</Link>
+          </div>
         </div>
       )}
     </nav>

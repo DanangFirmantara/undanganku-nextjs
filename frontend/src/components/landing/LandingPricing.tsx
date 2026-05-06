@@ -1,46 +1,44 @@
 import Link from "next/link"
 
 const FEATURES = [
-  "Undangan Unlimited Tamu",
-  "Countdown Real-time",
-  "Amplop Digital",
-  "Buku Ucapan Tamu",
-  "Musik Latar Custom",
-  "Aktif Selamanya",
+  "Akses Semua Tema Premium",
+  "Fitur Amplop Digital & QR Code",
+  "Pilihan Musik Latar & Galeri Foto",
+  "Buku Ucapan & RSVP Real-time",
+  "Thumbnail WhatsApp Custom",
+  "Update Data Tanpa Batas",
 ]
 
 export function LandingPricing() {
   return (
-    <section className="section" id="pricing" style={{ background: "var(--cream-dark)" }}>
-      <div className="section-inner" style={{ textAlign: "center" }}>
-        <div className="section-label">HARGA</div>
-        <h2 className="section-title">Satu Harga, Semua Fitur</h2>
-        <p className="section-sub" style={{ margin: "0 auto" }}>
-          Tidak ada biaya tersembunyi. Bayar sekali, nikmati selamanya.
-        </p>
-        <div className="pricing-card">
-          <div className="pricing-header">
-            <div className="pricing-name">PAKET PREMIUM</div>
-            <div className="pricing-price">
-              <sup>Rp</sup>149.000
-            </div>
+    <section id="pricing" className="pricing-section">
+      <div className="section-container">
+        <div className="pricing-card" data-reveal="">
+          <div className="pricing-badge">PALING POPULER</div>
+          <h2 className="pricing-name">Paket Premium</h2>
+          <div className="pricing-price">
+            <span className="price-amount">Rp 149.000</span>
           </div>
-          <div className="pricing-body">
-            <ul className="pricing-features">
-              {FEATURES.map((f) => (
-                <li key={f}>
-                  <span className="pricing-check">✓</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <Link href="/login" className="btn-wine" style={{ display: "block", textAlign: "center", padding: "0.85rem", borderRadius: "8px", fontSize: "1rem" }}>
-              Mulai Sekarang
-            </Link>
-            <div className="pricing-trust">
-              <span>🔒 SSL Secure</span>
-              <span>✓ Anti-Spam</span>
-              <span>💳 Midtrans</span>
+          <p className="pricing-note">Bayar sekali, aktif selamanya</p>
+          <ul className="pricing-features">
+            {FEATURES.map(f => (
+              <li key={f}>
+                <i className="fa-solid fa-check" /> {f}
+              </li>
+            ))}
+          </ul>
+          <Link href="/login" className="btn-primary btn-full">
+            Buat Undangan Sekarang <i className="fa-solid fa-arrow-right" />
+          </Link>
+          <div className="trust-icons">
+            <div className="trust-icon-item">
+              <i className="fa-solid fa-shield-halved" /><span>Midtrans</span>
+            </div>
+            <div className="trust-icon-item">
+              <i className="fa-solid fa-lock" /><span>SSL Secure</span>
+            </div>
+            <div className="trust-icon-item">
+              <i className="fa-solid fa-ban" /><span>Anti-Spam</span>
             </div>
           </div>
         </div>
