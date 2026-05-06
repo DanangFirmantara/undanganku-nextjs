@@ -87,6 +87,7 @@ bin/
 # ==========================================
 # CLAUDE
 # ==========================================
+CLAUDE.md
 .claude/
 backend/lessons/
 frontend/lessons/
