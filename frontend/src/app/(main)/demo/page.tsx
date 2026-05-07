@@ -9,6 +9,7 @@ import { DemoCountdown } from "@/components/features/demo/DemoCountdown"
 import { DemoAmplop } from "@/components/features/demo/DemoAmplop"
 import { DemoGuestbook } from "@/components/features/demo/DemoGuestbook"
 import { DemoClosing } from "@/components/features/demo/DemoClosing"
+import { DemoMusicPlayer } from "@/components/features/demo/DemoMusicPlayer"
 
 export default function DemoPage() {
   const motesRef = useRef<HTMLDivElement>(null)
@@ -133,6 +134,7 @@ export default function DemoPage() {
           <DemoGuestbook />
           <DemoClosing />
         </div>
+        <DemoMusicPlayer />
       </div>
     </>
   )
