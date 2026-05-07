@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "Preview undangan digital modern dengan musik, animasi, dan fitur lengkap. Buat milikmu dalam 5 menit di invyta.id.",
     images: [
       {
-        url: "/og/og-demo.jpg",
+        url: "/api/og?type=demo&title=Demo+Undangan+Pernikahan+Digital&subtitle=Preview+undangan+modern+dengan+musik+dan+animasi+cinematic.",
         width: 1200,
         height: 630,
         alt: "Demo Undangan Pernikahan Digital Invyta",

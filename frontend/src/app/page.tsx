@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "Buat undangan pernikahan digital cantik dalam 5 menit. Musik, countdown, RSVP, amplop digital. Bagikan lewat WhatsApp.",
     images: [
       {
-        url: "/og/og-default.jpg",
+        url: "/api/og?type=default&title=Undangan+Pernikahan+Digital+Indonesia&subtitle=Buat+undangan+cantik+dalam+5+menit.+Musik%2C+countdown%2C+RSVP.",
         width: 1200,
         height: 630,
         alt: "Invyta — Undangan Pernikahan Digital",
