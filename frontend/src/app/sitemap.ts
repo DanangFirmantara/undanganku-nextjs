@@ -6,8 +6,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: siteConfig.url,
       lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
+      changeFrequency: "monthly",
+      priority: 1.0,
+    },
+    {
+      url: `${siteConfig.url}/demo`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
   ]
 }

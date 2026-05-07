@@ -1,6 +1,7 @@
 export const siteConfig = {
-  name: "Undanganku",
-  description: "Buat undangan pernikahan digital yang elegan dan mudah dibagikan",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ogImage: "/og-image.png",
+  name: "Invyta",
+  description:
+    "Buat undangan pernikahan digital yang cantik dalam 5 menit. Musik otomatis, countdown, RSVP, dan amplop digital. Bagikan lewat WhatsApp. Mulai gratis!",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://invyta.id",
+  ogImage: "/og/og-default.jpg",
 } as const

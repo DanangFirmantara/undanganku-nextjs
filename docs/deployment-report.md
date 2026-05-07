@@ -31,6 +31,61 @@
 
 ---
 
+## Deploy #3 — 2026-05-07
+
+**Server:** 103.93.129.174 (Ubuntu 22.04 LTS)
+**Dilakukan oleh:** Andi (Deploy Agent)
+
+### Yang Diupdate
+- **Frontend only** — tambah background music player ke halaman `/demo` (DemoMusicPlayer component + audio file `wedding-music.mp4`)
+- Image tag: `2.1` → `2.2`
+
+### Hasil
+
+| Step | Status | Detail |
+|---|---|---|
+| docker build | ✅ | `danang837/undanganku-frontend:2.2`, build 11.5s, Next.js 16.2.4 Turbopack |
+| docker push | ✅ | Digest: `sha256:ff21ea6079cce82cea6cba240282c9f4393baf0d546e87730f10d8c06bce927b` |
+| sed update tag | ✅ | docker-compose.yml tag diupdate ke `2.2` |
+| docker compose pull | ✅ | Image 2.2 berhasil di-pull di server |
+| docker compose up | ✅ | Container `undanganku_frontend` recreated dan running |
+| Verifikasi HTTP | ✅ | `http://localhost:4000` → HTTP 200 |
+
+### Catatan
+- NEXT_PUBLIC_API_URL di-bake saat build via `--build-arg` sesuai prosedur
+- Commit yang di-deploy: `ed0c3de` dari branch `development`
+
+---
+
+## Deploy #4 — 2026-05-07
+
+**Server:** 103.93.129.174 (Ubuntu 22.04 LTS)
+**Dilakukan oleh:** Andi (Deploy Agent)
+
+### Yang Diupdate
+- **Frontend only** — tambah `NEXT_PUBLIC_SITE_URL=https://invyta.id` sebagai build-time variable
+- Dockerfile diupdate: tambah `ARG NEXT_PUBLIC_SITE_URL` + `ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL`
+- Image tag: `2.2` → `2.3`
+
+### Hasil
+
+| Step | Status | Detail |
+|---|---|---|
+| Edit Dockerfile | ✅ | Tambah ARG + ENV NEXT_PUBLIC_SITE_URL |
+| docker build | ✅ | `danang837/undanganku-frontend:2.3`, build sukses dengan kedua build-arg |
+| docker push | ✅ | Digest: `sha256:a00fb18b4b8a5bdeec85d9d0183e22459d73078fe116a7d1526b7e44460e0dcf` |
+| sed update tag | ✅ | docker-compose.yml tag diupdate ke `2.3` |
+| docker compose pull | ✅ | Image 2.3 berhasil di-pull di server |
+| docker compose up | ✅ | Container `undanganku_frontend` recreated dan running |
+| Verifikasi HTTP | ✅ | `http://localhost:4000` → HTTP 200 |
+| Verifikasi sitemap | ✅ | `/sitemap.xml` menggunakan `https://invyta.id` (bukan `localhost`) |
+
+### Catatan
+- Build-args yang digunakan: `NEXT_PUBLIC_API_URL=http://103.93.129.174/ipa-undanganku/api` dan `NEXT_PUBLIC_SITE_URL=https://invyta.id`
+- Verifikasi sitemap.xml menunjukkan URL sudah benar: `<loc>https://invyta.id</loc>` dan `<loc>https://invyta.id/demo</loc>`
+
+---
+
 ## Deploy #1 — 2026-05-03
 
 **Server:** 103.93.129.174 (Ubuntu 22.04 LTS)  
