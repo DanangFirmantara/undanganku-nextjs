@@ -1,0 +1,467 @@
+/* Scoped to .m06tf3-root — do NOT use :root or * resets here */
+
+/* ─── Keyframe Animations ─────────────────────────────────────────────────── */
+@keyframes m06tf3-flower-rotating {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes m06tf3-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-20px) scale(1.02); }
+}
+
+@keyframes m06tf3-float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(20px) rotate(2deg); }
+}
+
+@keyframes m06tf3-drift {
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  33%       { transform: translateX(6px) translateY(-8px); }
+  66%       { transform: translateX(-6px) translateY(4px); }
+}
+
+/* Scroll-reveal: initial state hidden */
+.m06tf3-reveal {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.m06tf3-reveal.is-visible {
+  opacity: 1;
+  transform: none !important;
+}
+.m06tf3-inv-atas  { transform: translateY(-32px); }
+.m06tf3-inv-bawah { transform: translateY(32px); }
+.m06tf3-inv-kiri  { transform: translateX(-32px); }
+.m06tf3-inv-kanan { transform: translateX(32px); }
+
+/* ─── Root ─────────────────────────────────────────────────────────────────── */
+.m06tf3-root {
+  font-family: var(--font-sora), var(--font-nunito), sans-serif;
+}
+
+/* ─── Left Panel ───────────────────────────────────────────────────────────── */
+.m06tf3-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 58%;
+  flex-shrink: 0;
+}
+
+.m06tf3-motion-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.m06tf3-layer-1 { animation: m06tf3-float 8s ease-in-out infinite; }
+.m06tf3-layer-2 { animation: m06tf3-float-reverse 11s ease-in-out infinite; opacity: 0.6; }
+.m06tf3-layer-3 { animation: m06tf3-drift 14s ease-in-out infinite; opacity: 0.45; }
+.m06tf3-layer-4 { animation: m06tf3-float 9s ease-in-out infinite reverse; opacity: 0.35; }
+
+/* ─── Right Panel ──────────────────────────────────────────────────────────── */
+.m06tf3-right {
+  width: 42%;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #FFFCF3;
+  flex-shrink: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #844E49 #D3CAC5;
+}
+.m06tf3-right::-webkit-scrollbar { width: 4px; }
+.m06tf3-right::-webkit-scrollbar-track { background: #FFFCF3; }
+.m06tf3-right::-webkit-scrollbar-thumb { background: #844E49; border-radius: 2px; }
+
+/* ─── Responsive mobile ────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .m06tf3-root  { display: block; }
+  .m06tf3-left  { position: sticky; top: 0; height: 35vh; width: 100%; z-index: 10; }
+  .m06tf3-right { width: 100%; height: auto; overflow-y: visible; }
+}
+
+/* ─── Section base ─────────────────────────────────────────────────────────── */
+.m06tf3-section {
+  padding: 4em 2em;
+  background: linear-gradient(180deg, #FFFCF3 0%, #D3CAC5 100%);
+}
+
+/* Alternate section with solid cream */
+.m06tf3-section-cream {
+  padding: 4em 2em;
+  background: #FFFCF3;
+}
+
+/* Section with light beige tint */
+.m06tf3-section-light {
+  padding: 4em 2em;
+  background: linear-gradient(180deg, #FFFCF3 0%, #FAF8F8 100%);
+}
+
+/* ─── Section separator ────────────────────────────────────────────────────── */
+.m06tf3-sep {
+  border-top: 1px solid rgba(132, 78, 73, 0.15);
+}
+
+/* ─── Typography ───────────────────────────────────────────────────────────── */
+.m06tf3-script {
+  font-family: var(--font-pinyon), cursive;
+  color: #844E49;
+  letter-spacing: 0.5px;
+  line-height: 1.2em;
+}
+
+.m06tf3-name {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2em;
+  color: #844E49;
+}
+
+.m06tf3-body {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5em;
+}
+
+.m06tf3-small {
+  font-size: 14px;
+  color: #844E49;
+}
+
+.m06tf3-tiny {
+  font-size: 12px;
+  color: #844E49;
+}
+
+/* ─── Divider ──────────────────────────────────────────────────────────────── */
+.m06tf3-divider {
+  width: 60px;
+  height: 1px;
+  background: #844E49;
+  margin: 1em auto;
+  opacity: 0.4;
+}
+
+/* ─── Monogram circle ──────────────────────────────────────────────────────── */
+.m06tf3-monogram {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background: #FFFCF3;
+  border: 3px solid #844E49;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+}
+
+/* ─── Card ─────────────────────────────────────────────────────────────────── */
+.m06tf3-card {
+  background: #FAF8F8ED;
+  border-radius: 25px;
+  padding: 2em;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+}
+
+/* ─── Event card wrapper ───────────────────────────────────────────────────── */
+.m06tf3-event-card {
+  background: rgba(250, 248, 248, 0.93);
+  border-radius: 25px;
+  padding: 2em;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ─── Timeline ─────────────────────────────────────────────────────────────── */
+.m06tf3-timeline-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background: #FFFCF3;
+  border: 3px solid #844E49;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+}
+
+.m06tf3-timeline-line {
+  width: 4px;
+  background: #966661;
+  flex: 1;
+  margin: 0 auto;
+  min-height: 80px;
+}
+
+/* ─── Timeline card with arrow ─────────────────────────────────────────────── */
+.m06tf3-tl-card {
+  background: #FAF8F8ED;
+  border-radius: 25px;
+  padding: 2em;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+  position: relative;
+  flex: 1;
+}
+
+.m06tf3-tl-card::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  background: #FAF8F8ED;
+  transform: rotate(45deg);
+  border-radius: 2px 0 0 2px;
+}
+
+/* ─── Button primary ───────────────────────────────────────────────────────── */
+.m06tf3-btn {
+  background: #844E49;
+  color: #FFF;
+  border: 3px solid #844E49;
+  border-radius: 25px;
+  padding: 12px 32px;
+  font-family: var(--font-aref), serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, border 0.3s, transform 0.3s, box-shadow 0.3s, border-radius 0.3s, opacity 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+}
+.m06tf3-btn:hover {
+  border: 3px double #FFF;
+  transform: scale(0.95);
+}
+
+/* ─── Countdown boxes ──────────────────────────────────────────────────────── */
+.m06tf3-countdown-box {
+  background: #844E49;
+  border-radius: 25px;
+  padding: 16px;
+  min-width: 68px;
+  text-align: center;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+}
+
+.m06tf3-countdown-number {
+  font-family: var(--font-cormorant), serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #FFF;
+  line-height: 1;
+}
+
+.m06tf3-countdown-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #FFF;
+  opacity: 0.85;
+  margin-top: 6px;
+}
+
+/* ─── Save date button (outline on cream BG) ───────────────────────────────── */
+.m06tf3-btn-save {
+  background: transparent;
+  color: #844E49;
+  border: 3px solid #844E49;
+  border-radius: 25px;
+  padding: 12px 32px;
+  font-family: var(--font-aref), serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, border 0.3s, transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.m06tf3-btn-save:hover {
+  background: #844E49;
+  color: #FFF;
+  transform: scale(0.95);
+}
+
+/* ─── Google Maps button ───────────────────────────────────────────────────── */
+.m06tf3-btn-maps {
+  background: #844E49;
+  color: #FFF;
+  border: 3px solid #844E49;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s, border 0.3s, transform 0.3s, opacity 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.m06tf3-btn-maps:hover {
+  border: 3px double #844E49;
+  transform: scale(0.95);
+  background: #6b3e3a;
+}
+
+/* ─── Color swatches ───────────────────────────────────────────────────────── */
+.m06tf3-swatch {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  border: 2px solid rgba(132, 78, 73, 0.2);
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+}
+
+/* ─── Wishes form container ────────────────────────────────────────────────── */
+.m06tf3-form-box {
+  background: rgba(250, 248, 248, 0.93);
+  border-radius: 25px;
+  padding: 2em;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+}
+
+/* ─── Form inputs ──────────────────────────────────────────────────────────── */
+.m06tf3-input {
+  background: #FFFCF3;
+  border: 3px solid #D3CAC5;
+  border-radius: 12px;
+  padding: 8px 16px;
+  color: #333333;
+  width: 100%;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+  transition: border 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+.m06tf3-input::placeholder { color: #a0918e; }
+.m06tf3-input:hover,
+.m06tf3-input:focus {
+  border: 3px double #844E49;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / .5);
+}
+
+/* ─── Submit button ────────────────────────────────────────────────────────── */
+.m06tf3-btn-submit {
+  background: #844E49;
+  color: #FFF;
+  border: 3px solid #844E49;
+  border-radius: 25px;
+  padding: 12px 32px;
+  font-family: var(--font-aref), serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: border 0.3s, transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.m06tf3-btn-submit:hover {
+  border: 3px double #FFF;
+  transform: scale(0.95);
+}
+
+/* ─── Custom radio ─────────────────────────────────────────────────────────── */
+.m06tf3-radio-wrap {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.m06tf3-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5em;
+}
+.m06tf3-radio-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: 3px solid #844E49;
+  background: #FFFCF3;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.m06tf3-radio-dot.is-checked { background: #844E49; }
+.m06tf3-radio-dot.is-checked::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  background: #FFF;
+}
+
+/* ─── Wishes list ──────────────────────────────────────────────────────────── */
+.m06tf3-wishes-list-box {
+  background: #FFF;
+  border-radius: 25px;
+  padding: 2em;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+}
+.m06tf3-wish-item { margin: 1em 0; }
+.m06tf3-wish-item:first-child { margin-top: 0; }
+.m06tf3-wish-item:last-child  { margin-bottom: 0; }
+.m06tf3-wish-name    { font-weight: 600; color: #844E49; font-size: 16px; }
+.m06tf3-wish-message { font-size: 15px; color: #333; line-height: 1.5em; }
+
+/* ─── Closing section ──────────────────────────────────────────────────────── */
+.m06tf3-closing {
+  background: #3d1515;
+  padding: 4em 2em;
+}
+.m06tf3-footer {
+  background: #1a0f0f;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / .5) inset;
+  padding: 2em;
+}
+
+/* ─── Corner ornament ──────────────────────────────────────────────────────── */
+.m06tf3-corner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* ─── Bank card ────────────────────────────────────────────────────────────── */
+.m06tf3-bank-card {
+  background: rgba(250, 248, 248, 0.93);
+  border-radius: 25px;
+  padding: 2em;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 240px;
+}
+
+/* ─── Decorative float on left panel ──────────────────────────────────────── */
+.m06tf3-float-up  { animation: m06tf3-float 8s ease-in-out infinite; }
+.m06tf3-float-dn  { animation: m06tf3-float-reverse 11s ease-in-out infinite; }
+.m06tf3-rotate    { animation: m06tf3-flower-rotating 20s linear infinite; }

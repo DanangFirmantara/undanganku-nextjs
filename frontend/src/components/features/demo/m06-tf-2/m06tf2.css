@@ -1,0 +1,206 @@
+/* Scoped to .m06tf2-root — do NOT use :root or * resets here */
+
+.m06tf2-root {
+  font-family: var(--font-sora), sans-serif;
+  color: #FFFCF3;
+}
+
+/* Left Panel */
+.m06tf2-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 58%;
+  flex-shrink: 0;
+}
+
+/* Right Panel */
+.m06tf2-right {
+  width: 42%;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #3d1515;
+  flex-shrink: 0;
+}
+
+/* Responsive: mobile */
+@media (max-width: 1023px) {
+  .m06tf2-root {
+    display: block;
+  }
+  .m06tf2-left {
+    position: sticky;
+    top: 0;
+    height: 35vh;
+    width: 100%;
+    z-index: 10;
+  }
+  .m06tf2-right {
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+  }
+}
+
+/* Section spacing */
+.m06tf2-section {
+  padding: 4rem 2rem;
+}
+
+/* Script font headings */
+.m06tf2-script {
+  font-family: var(--font-pinyon), cursive;
+  color: #c9a96e;
+}
+
+/* Serif name font */
+.m06tf2-name {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Divider ornament */
+.m06tf2-divider {
+  width: 60px;
+  height: 1px;
+  background: #c9a96e;
+  margin: 1rem auto;
+}
+
+/* Countdown boxes */
+.m06tf2-countdown-box {
+  background: rgba(255, 252, 243, 0.05);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  border-radius: 8px;
+  padding: 1rem 0.75rem;
+  min-width: 64px;
+  text-align: center;
+}
+
+.m06tf2-countdown-number {
+  font-family: var(--font-cormorant), serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #c9a96e;
+  line-height: 1;
+}
+
+.m06tf2-countdown-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #FFFCF3;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+/* Timeline */
+.m06tf2-timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #844E49;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.m06tf2-timeline-line {
+  width: 1px;
+  background: rgba(132, 78, 73, 0.4);
+  flex: 1;
+  margin: 4px auto;
+}
+
+/* Color swatches */
+.m06tf2-swatch {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 252, 243, 0.2);
+}
+
+/* Wishes form */
+.m06tf2-input {
+  background: rgba(255, 252, 243, 0.07);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  color: #FFFCF3;
+  width: 100%;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 0.875rem;
+}
+
+.m06tf2-input::placeholder {
+  color: rgba(255, 252, 243, 0.4);
+}
+
+.m06tf2-input:focus {
+  outline: none;
+  border-color: #c9a96e;
+}
+
+.m06tf2-btn {
+  background: #844E49;
+  color: #FFFCF3;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.m06tf2-btn:hover {
+  background: #6d3e3a;
+}
+
+.m06tf2-btn-outline {
+  background: transparent;
+  border: 1px solid #c9a96e;
+  color: #c9a96e;
+  border-radius: 6px;
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.m06tf2-btn-outline:hover {
+  background: #c9a96e;
+  color: #3d1515;
+}
+
+/* Monogram circle */
+.m06tf2-monogram {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid #c9a96e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.m06tf2-monogram::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 110, 0.4);
+}
+
+/* Floral corner ornament (CSS-only) */
+.m06tf2-corner-ornament {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  opacity: 0.25;
+  pointer-events: none;
+}

@@ -86,6 +86,36 @@
 
 ---
 
+## Deploy #5 — 2026-05-07
+
+**Server:** 103.93.129.174 (Ubuntu 22.04 LTS)
+**Dilakukan oleh:** Andi (Deploy Agent)
+
+### Yang Diupdate
+- **Frontend only** — SEO overhaul: metadata, JSON-LD structured data, sitemap.xml, robots.txt, brand rename ke Invyta (commit `b29d19d`)
+- Image tag: `2.3` → `2.4`
+- Build dengan `--no-cache` untuk memastikan kode terbaru masuk ke image
+
+### Hasil
+
+| Step | Status | Detail |
+|---|---|---|
+| docker build --no-cache | ✅ | `danang837/undanganku-frontend:2.4`, build 30s, routes termasuk `/sitemap.xml`, `/robots.txt`, `/demo` |
+| docker push | ✅ | Digest: `sha256:60ab59bb71d4e0586776ca2f92904f537f83eb144230c3abb41e3c3d5197534c` |
+| sed update tag | ✅ | docker-compose.yml tag diupdate ke `2.4` |
+| docker compose pull | ✅ | Image 2.4 berhasil di-pull di server |
+| docker compose up | ✅ | Container `undanganku_frontend` recreated dan running |
+| Verifikasi HTTP localhost | ✅ | `http://localhost:4000` → HTTP 200 |
+| Verifikasi sitemap.xml (publik) | ✅ | `https://invyta.id/sitemap.xml` → ada entry `/` dan `/demo`, URL `https://invyta.id` |
+| Verifikasi robots.txt (publik) | ✅ | `https://invyta.id/robots.txt` → HTTP 200 |
+
+### Catatan
+- Build-args yang digunakan: `NEXT_PUBLIC_API_URL=http://103.93.129.174/ipa-undanganku/api` dan `NEXT_PUBLIC_SITE_URL=https://invyta.id`
+- Penting: `--no-cache` wajib digunakan saat ada perubahan kode frontend yang signifikan, karena Docker cache layer `COPY . .` tidak otomatis invalidated
+- Commit yang di-deploy: `b29d19d` dari branch `development`
+
+---
+
 ## Deploy #1 — 2026-05-03
 
 **Server:** 103.93.129.174 (Ubuntu 22.04 LTS)  
@@ -210,6 +240,41 @@ undanganku_backend → pos_postgres:5432/undanganku_db
 - Port 3000 (pos_frontend) masih bisa diakses langsung, tidak terganggu
 
 ---
+
+---
+
+## Deploy #6 — 2026-05-07
+
+**Server:** 103.93.129.174 (Ubuntu 22.04 LTS)
+**Dilakukan oleh:** Andi (Deploy Agent)
+
+### Yang Diupdate
+- **Frontend only** — tambah dynamic OG image route `/api/og` via next/og (commit `be4f386`)
+- Image tag: `2.4` → `2.5`
+- Build dengan `--no-cache` dan dua build-arg: `NEXT_PUBLIC_API_URL` + `NEXT_PUBLIC_SITE_URL`
+- Nginx config `invyta` (HTTPS) dan `undanganku` (HTTP) diupdate: tambah `location /api/og` dan `location /api/auth/` yang proxy ke frontend (port 4000), sebelum block `/api/` yang proxy ke backend
+
+### Hasil
+
+| Step | Status | Detail |
+|---|---|---|
+| docker build --no-cache | ✅ | `danang837/undanganku-frontend:2.5`, route `/api/og` terdeteksi sebagai Dynamic |
+| docker push | ✅ | Digest: `sha256:16b4ae384fc6fdc5bfc9f7e4d5b54af3af18f80cd545b427a758311df0494f80` |
+| sed update tag | ✅ | docker-compose.yml tag diupdate ke `2.5` |
+| docker compose pull | ✅ | Image 2.5 berhasil di-pull di server |
+| docker compose up | ✅ | Container `undanganku_frontend` recreated dan running |
+| Verifikasi HTTP localhost | ✅ | `http://localhost:4000` → HTTP 200 |
+| Verifikasi /api/og localhost | ✅ | `http://localhost:4000/api/og?type=default` → HTTP 200, content-type: image/png |
+| Update nginx /etc/nginx/sites-available/invyta | ✅ | Tambah `location /api/og` dan `location /api/auth/` ke frontend sebelum `/api/` backend |
+| Update nginx /etc/nginx/sites-available/undanganku | ✅ | Sama seperti invyta, untuk konsistensi HTTP config |
+| nginx -t && reload | ✅ | Config valid, nginx reload OK |
+| Verifikasi HTTPS publik /api/og | ✅ | `https://invyta.id/api/og?type=default` → HTTP 200, Content-Type: image/png |
+
+### Catatan
+- Root cause 403: `/api/` di nginx config `invyta` (HTTPS port 443) diarahkan ke backend WildFly. Route Next.js `/api/og` ikut tersangkut. Fix: tambah `location /api/og` lebih spesifik sebelum block `/api/` umum — nginx menggunakan longest prefix match
+- Pattern yang harus diikuti: setiap Next.js route di bawah `/api/` yang bukan backend harus didaftarkan secara eksplisit di kedua nginx config (`invyta` dan `undanganku`)
+- Build-args yang digunakan: `NEXT_PUBLIC_API_URL=http://103.93.129.174/ipa-undanganku/api` dan `NEXT_PUBLIC_SITE_URL=https://invyta.id`
+- Commit yang di-deploy: `be4f386` dari branch `development`
 
 ## Perintah Berguna di Server
 
